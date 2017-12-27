@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity
             }
             else
             {
-                message = "It is now player " + game.getPlayerTurn() + "'s turn";
+                message = "It is player " + game.getPlayerTurn() + "'s turn.";
             }
 
             int width = (int) textPaint.measureText(message);
