@@ -2,7 +2,7 @@ package com.minich.android_ttt_customview;
 
 public class GameState
 {
-    // instance variables
+    // instance variables   
 
     private boolean gameRunning;
     private String playerTurn;
