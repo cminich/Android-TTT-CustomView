@@ -20,7 +20,6 @@ import android.widget.Toast;
 import android.text.TextPaint;
 import android.text.StaticLayout;
 import android.text.Layout;
-import android.view.animation.Animation; // unnecessary but used to test git
 
 public class MainActivity extends AppCompatActivity
 {
