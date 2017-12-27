@@ -1,4 +1,4 @@
-/**
+/*
  NAME_OF_PROJECT
  @author John Doe Period 5/6
  */
@@ -20,13 +20,14 @@ import android.widget.Toast;
 import android.text.TextPaint;
 import android.text.StaticLayout;
 import android.text.Layout;
+import android.view.animation.Animation; // unnecessary but used to test git
 
 public class MainActivity extends AppCompatActivity
 {
     TicTacToeBoardView ticTacToeBoardView;
     Board board;
     GameState game;
-    int mySquareWidth;
+    int squareWidth;
 
     // initialize the Activity with the View of the tic tac toe board
     @Override
@@ -66,45 +67,45 @@ public class MainActivity extends AppCompatActivity
             textPaint.setAntiAlias(true);
             textPaint.setTextSize(16 * getResources().getDisplayMetrics().density);
             textPaint.setColor(Color.BLACK);
-            String message = "";
+            String message;
 
             int myLeftEdge = 0;
             int myTopEdge = 0;
-            mySquareWidth = screenWidth / 3;
+            squareWidth = screenWidth / 3;
 
-            canvas.drawLine(myLeftEdge, myTopEdge + mySquareWidth, myLeftEdge + mySquareWidth * 3, myTopEdge + mySquareWidth, paint);           // top horizontal line
-            canvas.drawLine(myLeftEdge, myTopEdge + mySquareWidth * 2, myLeftEdge + mySquareWidth * 3, myTopEdge + mySquareWidth * 2, paint);   // bottom horizontal line
-            canvas.drawLine(myLeftEdge + mySquareWidth,       myTopEdge, myLeftEdge + mySquareWidth,     myTopEdge + mySquareWidth * 3, paint); // left vertical line
-            canvas.drawLine(myLeftEdge + mySquareWidth * 2,   myTopEdge, myLeftEdge + mySquareWidth * 2, myTopEdge + mySquareWidth * 3, paint); // right vertical line
+            canvas.drawLine(myLeftEdge, myTopEdge + squareWidth, myLeftEdge + squareWidth * 3, myTopEdge + squareWidth, paint);           // top horizontal line
+            canvas.drawLine(myLeftEdge, myTopEdge + squareWidth * 2, myLeftEdge + squareWidth * 3, myTopEdge + squareWidth * 2, paint);   // bottom horizontal line
+            canvas.drawLine(myLeftEdge + squareWidth,       myTopEdge, myLeftEdge + squareWidth,     myTopEdge + squareWidth * 3, paint); // left vertical line
+            canvas.drawLine(myLeftEdge + squareWidth * 2,   myTopEdge, myLeftEdge + squareWidth * 2, myTopEdge + squareWidth * 3, paint); // right vertical line
 
             if (board.getPosition(0, 0).equals("x"))
             {
-                canvas.drawLine(0, 0, mySquareWidth, mySquareWidth, paint);
-                canvas.drawLine(mySquareWidth,  0, 0, mySquareWidth, paint);
+                canvas.drawLine(0, 0, squareWidth, squareWidth, paint);
+                canvas.drawLine(squareWidth,  0, 0, squareWidth, paint);
             }
             else if (board.getPosition(0, 0).equals("o"))
             {
-                canvas.drawCircle(Math.round(myLeftEdge + mySquareWidth * .5), Math.round(myTopEdge + mySquareWidth / 2), Math.round(mySquareWidth / 2), paint);
+                canvas.drawCircle(Math.round(myLeftEdge + squareWidth * .5), Math.round(myTopEdge + squareWidth / 2), Math.round(squareWidth / 2), paint);
             }
 
             if (board.getPosition(0, 1).equals("x"))
             {
-                canvas.drawLine(mySquareWidth, 0, 2 * mySquareWidth, mySquareWidth, paint);
-                canvas.drawLine(2 * mySquareWidth, 0, mySquareWidth, mySquareWidth, paint);
+                canvas.drawLine(squareWidth, 0, 2 * squareWidth, squareWidth, paint);
+                canvas.drawLine(2 * squareWidth, 0, squareWidth, squareWidth, paint);
             }
             else if (board.getPosition(0, 1).equals("o"))
             {
-                canvas.drawCircle(Math.round(myLeftEdge + mySquareWidth * 1.5), Math.round(myTopEdge + mySquareWidth / 2), Math.round(mySquareWidth / 2), paint);
+                canvas.drawCircle(Math.round(myLeftEdge + squareWidth * 1.5), Math.round(myTopEdge + squareWidth / 2), Math.round(squareWidth / 2), paint);
             }
 
             if (board.getPosition(0, 2).equals("x"))
             {
-                canvas.drawLine(2 * mySquareWidth, 0, 3 * mySquareWidth, mySquareWidth, paint);
-                canvas.drawLine(3 * mySquareWidth, 0, 2 * mySquareWidth, mySquareWidth, paint);
+                canvas.drawLine(2 * squareWidth, 0, 3 * squareWidth, squareWidth, paint);
+                canvas.drawLine(3 * squareWidth, 0, 2 * squareWidth, squareWidth, paint);
             }
             else if (board.getPosition(0, 2).equals("o"))
             {
-                canvas.drawCircle(Math.round(myLeftEdge + mySquareWidth * 2.5), Math.round(myTopEdge + mySquareWidth / 2), Math.round(mySquareWidth / 2), paint);
+                canvas.drawCircle(Math.round(myLeftEdge + squareWidth * 2.5), Math.round(myTopEdge + squareWidth / 2), Math.round(squareWidth / 2), paint);
             }
 
             // TODO: add if's here for the rest of the game board positions
@@ -125,9 +126,9 @@ public class MainActivity extends AppCompatActivity
             }
 
             int width = (int) textPaint.measureText(message);
-            StaticLayout staticLayout = new StaticLayout(message, textPaint, (int) width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0, false);
+            StaticLayout staticLayout = new StaticLayout(message, textPaint, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0, false);
             canvas.save();
-            canvas.translate(screenWidth / 2 - width / 2, 3 * mySquareWidth + 50);
+            canvas.translate(screenWidth / 2 - width / 2, 3 * squareWidth + 50);
             staticLayout.draw(canvas);
             canvas.restore();
         }
@@ -144,7 +145,7 @@ public class MainActivity extends AppCompatActivity
                 // using Toast for debugging purposes -  remove from final version
                 Toast.makeText(getApplicationContext(),"playerTurn: " + game.getPlayerTurn() + "\nx: "+ Math.round(x) + "\ny: " + Math.round(y),Toast.LENGTH_SHORT).show();
 
-                if (x >= 0 && x <= mySquareWidth && y >= 0 && y <= mySquareWidth && board.getPosition(0, 0).isEmpty())
+                if (x >= 0 && x <= squareWidth && y >= 0 && y <= squareWidth && board.getPosition(0, 0).isEmpty())
                 {
 
                     if (game.getPlayerTurn().equals("x"))
@@ -157,7 +158,7 @@ public class MainActivity extends AppCompatActivity
                     }
 
                 }
-                else if (x >= mySquareWidth && x <= 2 * mySquareWidth && y >= 0 && y <= mySquareWidth)
+                else if (x >= squareWidth && x <= 2 * squareWidth && y >= 0 && y <= squareWidth)
                 {
 
                     if (game.getPlayerTurn().equals("x"))
@@ -170,7 +171,7 @@ public class MainActivity extends AppCompatActivity
                     }
 
                 }
-                else if (x >= 2 * mySquareWidth && x <= 3 * mySquareWidth && y >= 0 && y <= mySquareWidth)
+                else if (x >= 2 * squareWidth && x <= 3 * squareWidth && y >= 0 && y <= squareWidth)
                 {
 
                     if (game.getPlayerTurn().equals("x"))

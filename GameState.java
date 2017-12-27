@@ -1,5 +1,8 @@
 package com.minich.android_ttt_customview;
 
+import android.view.animation.Animation; // unnecessary but used to test git
+
+
 public class GameState
 {
     // instance variables
@@ -44,10 +47,10 @@ public class GameState
     public boolean isDraw(Board board)
     {
 
-        for (int row = 0; row < board.ROWS; row++)
+        for (int row = 0; row < Board.ROWS; row++)
         {
 
-            for (int col = 0; col < board.COLS; col++)
+            for (int col = 0; col < Board.COLS; col++)
             {
 
                 if (board.getBoard()[row][col].isEmpty())
