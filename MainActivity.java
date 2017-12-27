@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity
     // tic tac toe board view
     private class TicTacToeBoardView extends View
     {
-        private String playerTurn = "o";
+        private String playerTurn = "x";
 
         public TicTacToeBoardView(Context context)
         {
